@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { auth, db } from "@/configs/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const Signup: React.FC = () => {
-  const [roomId, setRoomId] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [roomId, setRoomId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const validateRoomId = async (roomId: string) => {
-    const roomRef = doc(db, 'rooms', roomId);
+    const roomRef = doc(db, "rooms", roomId);
     const documentSnapshot = await getDoc(roomRef);
     return documentSnapshot.exists();
   };
@@ -19,22 +26,26 @@ const Signup: React.FC = () => {
   const handleSubmit = async () => {
     const isRoomValid = await validateRoomId(roomId);
     if (!isRoomValid) {
-      alert('無効なRoomIDです。');
+      alert("無効なRoomIDです。");
       return;
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
       const user = userCredential.user;
       if (user) {
         const userId = user.uid;
-        const userDocumentRef = doc(db, 'users', userId);
+        const userDocumentRef = doc(db, "users", userId);
         await setDoc(userDocumentRef, {
           roomId,
           name,
-          email
+          email,
         });
-        alert('登録が完了しました。');
+        alert("登録が完了しました。");
       }
     } catch (error) {
       alert(`アカウントの作成に失敗しました。\n ${error.message}`);
@@ -46,9 +57,9 @@ const Signup: React.FC = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Typography component="h1" variant="h5">

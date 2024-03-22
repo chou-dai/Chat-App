@@ -15,13 +15,27 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route
           path="/"
-          element={<AuthWrapper><Chat /></AuthWrapper>} />
+          element={
+            <AuthWrapper>
+              <Chat />
+            </AuthWrapper>
+          }
+        />
         <Route
           path="/signup/"
-          element={<AuthWrapper><Signup /></AuthWrapper>} />
+          element={
+            <AuthWrapper>
+              <Signup />
+            </AuthWrapper>
+          }
+        />
         <Route
           path="/login/"
-          element={<AuthWrapper><Loign /></AuthWrapper>}
+          element={
+            <AuthWrapper>
+              <Loign />
+            </AuthWrapper>
+          }
         />
       </Routes>
     </Provider>
