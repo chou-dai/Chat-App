@@ -1,65 +1,124 @@
-import React, { Fragment, useState } from "react";
-import { auth } from "@/firebase/index";
+import React, { useState } from "react";
+import { auth, db } from "@/configs/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Box, Button, Container, Grid, TextField } from "@mui/material";
+import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const Signup: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [roomId, setRoomId] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const Register = async () => {
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        alert("サインアップ完了");
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+  const validateRoomId = async (roomId: string) => {
+    const roomRef = doc(db, 'rooms', roomId);
+    const documentSnapshot = await getDoc(roomRef);
+    return documentSnapshot.exists();
+  };
+
+  const handleSubmit = async () => {
+    const isRoomValid = await validateRoomId(roomId);
+    console.log(isRoomValid);
+    
+    if (!isRoomValid) {
+      alert('無効なRoom IDです。');
+      return;
+    }
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      if (user) {
+        const userId = user.uid;
+        const userDocumentRef = doc(db, 'users', userId);
+        await setDoc(userDocumentRef, {
+          roomId,
+          name,
+          email
+        });
+        alert('登録が完了しました。');
+      }
+    } catch (error) {
+      alert('アカウントの作成に失敗しました。');
+    }
   };
 
   return (
-    <Fragment>
-      <Container>
-        <Grid container>
-          <Grid item md={4}></Grid>
-          <Grid item md={4}>
-            <Grid item md={4}>
-              サインアップ
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          サインアップ
+        </Typography>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="roomId"
+                label="Room ID"
+                name="roomId"
+                autoComplete="roomId"
+                value={roomId}
+                onChange={(e) => setRoomId(e.target.value)}
+              />
             </Grid>
-            <Box component="form">
+            <Grid item xs={12}>
               <TextField
-                style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
+                required
+                fullWidth
+                id="name"
+                label="名前"
+                name="name"
+                autoComplete="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                label="メールアドレス"
                 name="email"
-                label="E-mail"
-                fullWidth
-                variant="outlined"
+                autoComplete="email"
                 value={email}
-                onChange={(event) => setEmail(event.currentTarget.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
+            </Grid>
+            <Grid item xs={12}>
               <TextField
-                style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
+                required
+                fullWidth
                 name="password"
-                label="Password"
-                fullWidth
-                variant="outlined"
+                label="パスワード"
                 type="password"
+                id="password"
+                autoComplete="new-password"
                 value={password}
-                onChange={(event) => setPassword(event.currentTarget.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
-              <Button
-                fullWidth
-                style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
-                onClick={Register}
-              >
-                新規登録
-              </Button>
-            </Box>
+            </Grid>
           </Grid>
-          <Grid item md={4}></Grid>
-        </Grid>
-      </Container>
-    </Fragment>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={handleSubmit}
+          >
+            サインアップ
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

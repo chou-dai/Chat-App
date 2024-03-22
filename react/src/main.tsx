@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import Signup from "@/component/pages/Signup";
 import Loign from "@/component/pages/Login";
 import AuthWrapper from "@/component/layout/AuthWrapper";
-import "@/firebase";
+import "@/configs/firebase";
 import "@/style/index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 

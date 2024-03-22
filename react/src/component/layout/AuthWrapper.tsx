@@ -1,5 +1,5 @@
 import React, { FC,  memo,  ReactNode, useEffect, useState } from "react";
-import { auth } from "../../firebase";
+import { auth } from "../../configs/firebase";
 import { useNavigate } from "react-router";
 import { Button } from '@mui/material';
 
@@ -25,7 +25,6 @@ const AuthWrapper: FC<Props> = memo(function authWrapper({children}: Props) {
                 setIsAuth(false);
                 // ログイン画面かサインアップ画面にいる場合はそのまま
                 if (pathname.includes("login") || pathname.includes("signup")) return;
-                // loginページへリダイレクト
                 navigate("/login");
             }
         });
@@ -38,15 +37,13 @@ const AuthWrapper: FC<Props> = memo(function authWrapper({children}: Props) {
     }
 
     return (
-        <div className="min-h-screen min-w-full flex flex-col items-center">
-            <div className="flex-1 flex justify-center pt-32">
+        <div className="min-h-screen">
                 {isAuth && (
                     <Button variant="contained" color="primary" onClick={handleLogout}>
                         ログアウト
                     </Button>
                 )}
                 {(children)}
-            </div>
         </div>
     );
 });

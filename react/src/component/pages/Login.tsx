@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { auth } from "@/firebase/index";
+import { auth } from "@/configs/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Box, Button, Container, Grid, TextField } from "@mui/material";
 
@@ -10,6 +10,7 @@ const Login: React.FC = () => {
   const Register = async () => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        console.log(userCredential);
         alert("サインアップ完了");
       })
       .catch((error) => {
