@@ -3,14 +3,13 @@ import { auth } from "@/firebase/index";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Box, Button, Container, Grid, TextField } from "@mui/material";
 
-const Auth: React.FC = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const Register = async () => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential);
         alert("サインアップ完了");
       })
       .catch((error) => {
@@ -63,4 +62,4 @@ const Auth: React.FC = () => {
   );
 };
 
-export default Auth;
+export default Login;

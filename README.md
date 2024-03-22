@@ -1,11 +1,14 @@
-# React Firebase Template
-高速でReactとFirebaseのプロジェクトを開発するためのテンプレート
-- Firebase EmulatorとReactの接続（ローカル開発）
-- pre-commit時のコードフォーマット（プロジェクトルートでgit commit時）
-- Firebase Hostingへの自動デプロイ（GitHub Actions）
+# Chat App
+表題のみのチャットアプリ。
+表題をクリックすると展開され内容を確認できる。
+
+【課題】団体運営においてメッセージの文字数が多いと読む気が失せたり、読まない人が出てくる<br/>
+【目的】伝えたい内容を端的に伝えることのできるチャットアプリを開発する<br/>
+【概要】メッセージの概要をチャットで表示し、クリックすると展開され内容が表示される
 
 ## Setup
-- `./firebase`ディレクトリと`./react`ディレクトリの`.firebaserc.sample`をコピーして`.firebaserc`を作成、プロジェクト名を記入
+- `./firebase`ディレクトリの`.firebaserc.sample`をコピーして`.firebaserc`を作成、プロジェクト名を記入
+- `./react`ディレクトリの`.firebaserc.sample`をコピーして`.firebaserc`を作成、プロジェクト名を記入
 - `./react`ディレクトリの`.env.sample`をコピーして`.env`を作成、環境変数を定義
 - Docker Compose をビルド
     ```
