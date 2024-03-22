@@ -18,10 +18,8 @@ const Signup: React.FC = () => {
 
   const handleSubmit = async () => {
     const isRoomValid = await validateRoomId(roomId);
-    console.log(isRoomValid);
-    
     if (!isRoomValid) {
-      alert('無効なRoom IDです。');
+      alert('無効なRoomIDです。');
       return;
     }
 
@@ -39,7 +37,7 @@ const Signup: React.FC = () => {
         alert('登録が完了しました。');
       }
     } catch (error) {
-      alert('アカウントの作成に失敗しました。');
+      alert(`アカウントの作成に失敗しました。\n ${error.message}`);
     }
   };
 
@@ -63,7 +61,7 @@ const Signup: React.FC = () => {
                 required
                 fullWidth
                 id="roomId"
-                label="Room ID"
+                label="RoomID"
                 name="roomId"
                 autoComplete="roomId"
                 value={roomId}

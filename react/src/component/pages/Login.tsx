@@ -1,65 +1,77 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { auth } from "@/configs/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Box, Button, Container, Grid, TextField } from "@mui/material";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const Register = async () => {
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        alert("サインアップ完了");
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+  const handleSubmit = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      if (user) {
+        alert('ログインが完了しました。');
+      }
+    } catch (error) {
+      // ログイン失敗時の処理
+      alert(`ログインに失敗しました。\n${error.message}`);
+    }
   };
 
   return (
-    <Fragment>
-      <Container>
-        <Grid container>
-          <Grid item md={4}></Grid>
-          <Grid item md={4}>
-            <Grid item md={4}>
-              サインアップ
-            </Grid>
-            <Box component="form">
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          ログイン
+        </Typography>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
               <TextField
-                style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
+                required
+                fullWidth
+                id="email"
+                label="メールアドレス"
                 name="email"
-                label="E-mail"
-                fullWidth
-                variant="outlined"
+                autoComplete="email"
                 value={email}
-                onChange={(event) => setEmail(event.currentTarget.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
+            </Grid>
+            <Grid item xs={12}>
               <TextField
-                style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
+                required
+                fullWidth
                 name="password"
-                label="Password"
-                fullWidth
-                variant="outlined"
+                label="パスワード"
                 type="password"
+                id="password"
+                autoComplete="current-password"
                 value={password}
-                onChange={(event) => setPassword(event.currentTarget.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
-              <Button
-                fullWidth
-                style={{ marginTop: "0.5em", marginBottom: "0.5em" }}
-                onClick={Register}
-              >
-                新規登録
-              </Button>
-            </Box>
+            </Grid>
           </Grid>
-          <Grid item md={4}></Grid>
-        </Grid>
-      </Container>
-    </Fragment>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            onClick={handleSubmit}
+          >
+            ログイン
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 
