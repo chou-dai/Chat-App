@@ -10,13 +10,14 @@ import {
   Typography,
 } from "@mui/material";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup: React.FC = () => {
   const [roomId, setRoomId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const validateRoomId = async (roomId: string) => {
     const roomRef = doc(db, "rooms", roomId);
@@ -46,7 +47,7 @@ const Signup: React.FC = () => {
           name,
           email,
         });
-        alert("登録が完了しました。");
+        navigate("/");
       }
     } catch (error) {
       alert(`アカウントの作成に失敗しました。\n ${error.message}`);

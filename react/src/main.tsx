@@ -1,12 +1,12 @@
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
-import Signup from "@/component/pages/Signup";
-import Loign from "@/component/pages/Login";
+import Signup from "@/pages/Signup";
+import Loign from "@/pages/Login";
 import AuthWrapper from "@/component/layout/AuthWrapper";
 import "@/configs/firebase";
 import "@/style/index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Chat from "./component/pages/Chat";
+import Chat from "./pages/Chat";
 import store from "./redux/config/store";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
