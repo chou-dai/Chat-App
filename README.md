@@ -33,3 +33,12 @@
     - Hosing
     - storage 
 - GitHub Actionsの環境変数を設定
+
+
+## Tips
+- React Formatter
+    ```
+    cd react
+    npm run format
+    prettier --write 'src/**/*.{js,jsx,ts,tsx}'
+    ```

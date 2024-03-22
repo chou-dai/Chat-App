@@ -10,6 +10,13 @@
     margin-bottom: 1px;
     width: fit-content;
 }
+.message-item .MuiTypography-h6 {
+    font-size: 1.1rem;
+}
+.message-item .css-ahj2mt-MuiTypography-root {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
 .message-item .css-46bh2p-MuiCardContent-root:last-child {
     padding-bottom: 5px;
 }

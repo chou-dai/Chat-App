@@ -44,7 +44,7 @@ const InputForm: React.FC = () => {
           <TextField
             className="title-field"
             variant="outlined"
-            label="題名"
+            label="表題"
             required
             fullWidth
             size="small"
@@ -56,7 +56,7 @@ const InputForm: React.FC = () => {
           <TextField
             className="content-field"
             variant="outlined"
-            label="詳細"
+            label="内容"
             fullWidth
             size="small"
             value={content}
