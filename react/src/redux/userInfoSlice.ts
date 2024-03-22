@@ -20,7 +20,7 @@ const initialState: UserInfo = {
 
 // Reduxにデータを保存するための関数（各コンポーネントからdispatchで呼び出し）
 export const getUserInfoAsync = createAsyncThunk("getUserInfo", async (uid: string) => {
-    const userRef = doc(db, 'users', uid);
+        const userRef = doc(db, 'users', uid);
     const documentSnapshot = await getDoc(userRef);
     const userInfo = documentSnapshot.data() as UserInfo;
     userInfo.uid = uid;
