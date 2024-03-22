@@ -38,12 +38,12 @@ const AuthWrapper: FC<Props> = memo(function authWrapper({children}: Props) {
 
     return (
         <div className="min-h-screen">
-                {isAuth && (
-                    <Button variant="contained" color="primary" onClick={handleLogout}>
-                        ログアウト
-                    </Button>
-                )}
-                {(children)}
+            {isAuth && (
+                <Button variant="contained" color="primary" onClick={handleLogout}>
+                    ログアウト
+                </Button>
+            )}
+            {(children)}
         </div>
     );
 });
