@@ -6,13 +6,14 @@ import {
   Button,
   Container,
   Grid,
-  TextField,
-  Typography,
+  TextField,Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
@@ -23,7 +24,7 @@ const Login: React.FC = () => {
       );
       const user = userCredential.user;
       if (user) {
-        alert("ログインが完了しました。");
+        navigate("/");
       }
     } catch (error) {
       // ログイン失敗時の処理
