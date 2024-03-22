@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 const Signup: React.FC = () => {
   const [roomId, setRoomId] = useState("");
@@ -126,6 +127,11 @@ const Signup: React.FC = () => {
             サインアップ
           </Button>
         </Box>
+        <Grid>
+          <Grid item>
+            <Link to="/login">既にアカウントをお持ちの方はこちら</Link>
+          </Grid>
+        </Grid>
       </Box>
     </Container>
   );

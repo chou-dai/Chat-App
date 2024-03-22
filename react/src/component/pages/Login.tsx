@@ -6,9 +6,10 @@ import {
   Button,
   Container,
   Grid,
-  TextField,Typography,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -82,6 +83,11 @@ const Login: React.FC = () => {
             ログイン
           </Button>
         </Box>
+        <Grid>
+          <Grid item>
+            <Link to="/signup">サインアップはこちら</Link>
+          </Grid>
+        </Grid>
       </Box>
     </Container>
   );
