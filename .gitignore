@@ -1,0 +1,7 @@
+.firebaserc
+
+/firebase/config/configstore/
+/firebase/config/firebase/
+/firebase/bin/firebase/
+
+.env
