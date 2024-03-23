@@ -1,7 +1,7 @@
-.title-field .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+.title-field .MuiInputBase-root {
     border-radius: 4px 4px 0 0;
 }
-.content-field .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+.content-field .MuiInputBase-root {
     border-radius: 0 0 4px 4px;
 }
 
@@ -13,13 +13,13 @@
 .message-item .MuiTypography-h6 {
     font-size: 1.1rem;
 }
-.message-item .css-ahj2mt-MuiTypography-root {
+.message-item .MuiTypography-body1 {
     font-size: 0.8rem;
     opacity: 0.8;
 }
-.message-item .css-46bh2p-MuiCardContent-root:last-child {
+.message-item .MuiCardContent-root:last-child {
     padding-bottom: 5px;
 }
-.message-item .css-46bh2p-MuiCardContent-root {
+.message-item .MuiCardContent-root {
     padding: 5px 10px;
 }
