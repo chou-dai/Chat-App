@@ -5,7 +5,6 @@ import { doc, setDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "@/configs/firebase";
 import { useAppSelector } from "@/redux/config/hooks";
 import { selectUserInfo } from "@/redux/userInfoSlice";
-import "@/style/pages/Chat.css";
 
 const InputForm: React.FC = () => {
   const [title, setTitle] = useState("");

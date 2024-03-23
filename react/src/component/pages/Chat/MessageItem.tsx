@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardContent, Collapse, Typography } from "@mui/material";
 import { messageType } from "@/pages/Chat";
-import "@/style/pages/Chat.css";
 
 interface MessageItemProps {
   message: messageType;
