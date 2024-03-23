@@ -27,7 +27,7 @@ const Login: React.FC = () => {
       if (user) {
         navigate("/");
       }
-    } catch (error) {
+    } catch (error: any) {
       // ログイン失敗時の処理
       alert(`ログインに失敗しました。\n${error.message}`);
     }

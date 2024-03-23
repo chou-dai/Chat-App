@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Card,
-  CardContent,
-  Collapse,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Collapse, Typography } from "@mui/material";
 import { messageType } from "@/pages/Chat";
 import "@/style/pages/Chat.css";
 
@@ -22,9 +17,10 @@ const MessageItem: React.FC<MessageItemProps> = ({ message, isOwnMessage }) => {
 
   return (
     <>
-      <Card sx={{
-        marginLeft: isOwnMessage ? 'auto' : null,
-        marginRight: isOwnMessage ? null : 'auto',
+      <Card
+        sx={{
+          marginLeft: isOwnMessage ? "auto" : null,
+          marginRight: isOwnMessage ? null : "auto",
         }}
         className="message-item"
       >
@@ -39,7 +35,11 @@ const MessageItem: React.FC<MessageItemProps> = ({ message, isOwnMessage }) => {
           </Collapse>
         </div>
       </Card>
-      <Typography style={{textAlign: isOwnMessage ? "right" : "left"}} variant="body2" color="textSecondary">
+      <Typography
+        style={{ textAlign: isOwnMessage ? "right" : "left" }}
+        variant="body2"
+        color="textSecondary"
+      >
         {message.userName}
       </Typography>
     </>

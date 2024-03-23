@@ -1,4 +1,4 @@
-import React, { FC, memo, ReactNode, useEffect } from "react";
+import { FC, memo, ReactNode, useEffect } from "react";
 import { auth } from "@/configs/firebase";
 import { useNavigate } from "react-router";
 import { getUserInfoAsync } from "@/redux/userInfoSlice";

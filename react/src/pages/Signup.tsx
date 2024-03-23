@@ -49,7 +49,7 @@ const Signup: React.FC = () => {
         });
         navigate("/");
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(`アカウントの作成に失敗しました。\n ${error.message}`);
     }
   };
