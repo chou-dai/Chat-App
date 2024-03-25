@@ -26,7 +26,7 @@ https://irace-chat-dev.web.app/
     docker compose up
     ```
 - Firebase EmulatorのFirestoreに`rooms`を登録
-    - Collection IDが`rooms`のコレクションを作成（乱数がroomIdになる）
+    - Collection IDが`rooms`のコレクションを作成（自動精製された乱数がroomIdになる）
 - 動作確認
     - Firebase Emulator：http://localhost:4000
     - React：http://localhost:3000
